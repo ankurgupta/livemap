@@ -15,9 +15,18 @@
 //= require_tree .
 
 $(function() {
-  var faye = new Faye.Client('http://localhost:9292/faye');
-  faye.subscribe("/addresses/new", function(data) {
-    json_data = JSON.parse(data);
-    $("#list").append('<li><strong>Lat:</strong> ' + json_data['latitude'] + '  <strong>Long:</strong> ' + json_data['longitude'] + '</li>');
-  });
+        // Enable pusher logging - don't include this in production
+        Pusher.log = function(message) {
+          if (window.console && window.console.log) {
+            window.console.log(message);
+          }
+        };
+
+        var pusher = new Pusher('7d3685b72f1e2ac3caea');
+        var channel = pusher.subscribe('address_channel');
+        channel.bind('my_event', function(data) {
+          $("#list").append('<li><strong>Lat:</strong> ' + data['latitude'] + '  <strong>Long:</strong> ' + data['longitude'] + '</li>');
+        });
+      
+      
 });
