@@ -4,8 +4,8 @@
   <title>Livemap</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js" %>
-  <%#= javascript_include_tag "http://localhost:9292/faye.js" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false" %>
+  <%= javascript_include_tag "application", "heatmap", "heatmap-gmaps", "application-heatmap" %>
   <%= csrf_meta_tags %>
     
 </head>
