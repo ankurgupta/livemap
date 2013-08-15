@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe("/addresses/new", function(data) {
+    json_data = JSON.parse(data);
+    $("#list").append('<li><strong>Lat:</strong> ' + json_data['latitude'] + '  <strong>Long:</strong> ' + json_data['longitude'] + '</li>');
+  });
+});
