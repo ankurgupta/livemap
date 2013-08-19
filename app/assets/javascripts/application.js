@@ -25,6 +25,7 @@ $(function() {
         var pusher = new Pusher('7d3685b72f1e2ac3caea');
         var channel = pusher.subscribe('address_channel');
         channel.bind('my_event', function(data) {
+          window.Maps.heatmap.addDataPoint(data['latitude'],data['longitude'],5);
           $("#list").append('<li><strong>Lat:</strong> ' + data['latitude'] + '  <strong>Long:</strong> ' + data['longitude'] + '</li>');
         });
       
