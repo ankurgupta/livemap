@@ -13,20 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-$(function() {
-        // Enable pusher logging - don't include this in production
-        Pusher.log = function(message) {
-          if (window.console && window.console.log) {
-            window.console.log(message);
-          }
-        };
-
-        var pusher = new Pusher('7d3685b72f1e2ac3caea');
-        var channel = pusher.subscribe('address_channel');
-        channel.bind('my_event', function(data) {
-          $("#list").append('<li><strong>Lat:</strong> ' + data['latitude'] + '  <strong>Long:</strong> ' + data['longitude'] + '</li>');
-        });
-      
-      
-});

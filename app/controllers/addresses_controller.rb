@@ -5,12 +5,11 @@ class AddressesController < ApplicationController
   end
 
   def create
-    #client = Faye::Client.new('http://localhost:9292/faye')
-    #client.publish('/addresses/new', params[:address].to_json)
-    
-    Pusher['address_channel'].trigger('my_event', params[:address].to_json)
-        
-    @address = Address.create!(params[:address])
+    @address = Address.new(params[:address])
+    if @address.valid?
+      Pusher['address_channel'].trigger('my_event', params[:address].to_json)
+      @address.save
+    end
     render nothing: true
   end
   
