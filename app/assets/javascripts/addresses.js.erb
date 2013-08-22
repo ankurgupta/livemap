@@ -1,17 +1,17 @@
 $(function() {
-        if('<%= Rails.env.production? %>' == 'false'){
-            Pusher.log = function(message) {
-              if (window.console && window.console.log) {
-                window.console.log(message);
-              }
-            };
+    <% unless Rails.env.production? %>
+    Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+            window.console.log(message);
         }
-        var pusher = new Pusher("<%= ENV['PUSHER_API_KEY'] %>");
-        var channel = pusher.subscribe('address_channel');
-        channel.bind('my_event', function(data) {
-          window.Maps.heatmap.addDataPoint(data['latitude'],data['longitude'],5);
+    };
+    <% end %>
+    var pusher = new Pusher("<%= ENV['PUSHER_API_KEY'] %>");
+    var channel = pusher.subscribe('address_channel');
+    channel.bind('my_event', function(data) {
+        window.Maps.heatmap.addDataPoint(data['latitude'],data['longitude'],5);
 
-          // TODO: modify this list elements in a nice way
-          $("#list").append('<li><strong>Lat:</strong> ' + data['latitude'] + '  <strong>Long:</strong> ' + data['longitude'] + '</li>');
-        });
+        // TODO: modify this list elements in a nice way
+        $("#list").append('<li><strong>Lat:</strong> ' + data['latitude'] + '  <strong>Long:</strong> ' + data['longitude'] + '</li>');
+    });
 });
