@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815052656) do
+ActiveRecord::Schema.define(:version => 20130822172442) do
 
   create_table "addresses", :force => true do |t|
     t.decimal  "latitude",   :precision => 16, :scale => 12
     t.decimal  "longitude",  :precision => 16, :scale => 12
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.string   "address"
+    t.text     "address1"
   end
 
 end
