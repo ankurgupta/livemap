@@ -2,6 +2,10 @@ class AddressesController < ApplicationController
 
   def index
     @addresses = Address.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @addresses }
+    end
   end
 
   def create
