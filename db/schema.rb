@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(:version => 20130822172442) do
     t.decimal  "longitude",  :precision => 16, :scale => 12
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
-    t.string   "address"
-    t.text     "address1"
+    t.text     "address"
   end
 
 end
