@@ -5,18 +5,20 @@
 
 (function ($, Maps) {
     window.onload = function(){
-        var myLatlng = new google.maps.LatLng(20, 78);
+        var myLatlng = new google.maps.LatLng(0, 0);
         var myOptions = {
-          zoom: 3,
+          zoom: 2,
+          zoomControl: false,
           center: myLatlng,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: false,
           scrollwheel: true,
-          draggable: true,
+          draggable: false,
           navigationControl: true,
           mapTypeControl: false,
-          scaleControl: true,
-          disableDoubleClickZoom: false
+          scaleControl: false,
+          disableDoubleClickZoom: false,
+          streetViewControl: true
         };
         Maps.map = new google.maps.Map(document.getElementById("heatmapArea"), myOptions);        
         Maps.heatmap = new HeatmapOverlay(Maps.map, {"radius":15, "visible":true, "opacity":60});
